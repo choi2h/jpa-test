@@ -1,0 +1,16 @@
+spring:
+  datasource: # MySQL
+    url: jdbc:mysql://localhost:3306/test_jpa
+    username:
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

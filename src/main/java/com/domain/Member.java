@@ -1,5 +1,6 @@
 package com.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,9 +33,9 @@ public class Member {
         this.name = name;
     }
 
-    @Setter
-    @OneToOne(mappedBy = "member")
-    private MemberDetail memberDetail;
+//    @Setter
+//    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+//    private MemberDetail memberDetail;
 
     @OneToMany(mappedBy = "member")
     private List<Post> posts = new ArrayList<>();

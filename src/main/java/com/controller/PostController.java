@@ -71,8 +71,6 @@ public class PostController {
         Post post1 = new Post(member, request.getTitle(), request.getContents());
         Comment comment1 = new Comment("hi1");
         Comment comment2 = new Comment("hi2");
-//        commentRepository.save(comment1);
-//        commentRepository.save(comment2);
         post1.addComment(comment1);
         post1.addComment(comment2);
         postRepository.save(post1);
@@ -212,6 +210,7 @@ public class PostController {
             m1_0.member_id=?
         limit
             ?, ?
+
         Hibernate:
             select
                 m1_0.member_id,
@@ -265,32 +264,32 @@ public class PostController {
     /**
      * Post Projection
      */
-//    @GetMapping("/pro/{memberId}")
-//    public ResponseEntity<List<PostInfoDto>> getPostDto(@PathVariable("memberId") Long memberId) {
-//        List<PostInfoDto> response = postRepository.findAllByMember_Id(memberId);
-//        return ResponseEntity.ok(response);
-//    }
-//
-//    @GetMapping("/pro/{memberId}")
-//    public ResponseEntity<List<PostInfoDto>> getPostItf(@PathVariable("memberId") Long memberId) {
-//        List<PostInfoInterface> infos = postRepository.findByMember_Id(memberId);
-//        List<PostInfoDto> response = new ArrayList<>();
-//        for (PostInfoInterface info : infos) {
-//            response.add(new PostInfoDto(info.getId(), info.getTitle()));
-//        }
-//        return ResponseEntity.ok(response);
-//    }
-//
-    @GetMapping("/pro/{memberId}")
-    public ResponseEntity<List<PostCommentResponse>> getPostItfV2(@PathVariable("memberId") Long memberId) {
-        List<PostCommentInterface> postComments = postRepository.findByMember_Id(memberId);
+    @GetMapping("/pro/query/{memberId}")
+    public ResponseEntity<List<PostInfoDto>> getPostDto(@PathVariable("memberId") Long memberId) {
+        List<PostInfoDto> response = postRepository.findAllByMemberId(memberId);
+        return ResponseEntity.ok(response);
+    }
 
-        List<PostCommentResponse> response = new ArrayList<>();
-        for (PostCommentInterface postComment : postComments) {
-            response.add(new PostCommentResponse(postComment));
+    @GetMapping("/pro/{memberId}")
+    public ResponseEntity<List<PostInfoDto>> getPostItf(@PathVariable("memberId") Long memberId) {
+        List<PostInfoInterface> infos = postRepository.findByMember_Id(memberId);
+        List<PostInfoDto> response = new ArrayList<>();
+        for (PostInfoInterface info : infos) {
+            response.add(new PostInfoDto(info.getId(), info.getTitle()));
         }
         return ResponseEntity.ok(response);
     }
+
+//    @GetMapping("/pro/{memberId}")
+//    public ResponseEntity<List<PostCommentResponse>> getPostItfV2(@PathVariable("memberId") Long memberId) {
+//        List<PostCommentInterface> postComments = postRepository.findByMember_Id(memberId);
+//
+//        List<PostCommentResponse> response = new ArrayList<>();
+//        for (PostCommentInterface postComment : postComments) {
+//            response.add(new PostCommentResponse(postComment));
+//        }
+//        return ResponseEntity.ok(response);
+//    }
 
     @GetMapping("/pro/v2/{memberId}")
     public ResponseEntity<List<PostCommentResponse>> getPostDynamic(@PathVariable("memberId") Long memberId) {

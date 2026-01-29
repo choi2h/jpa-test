@@ -1,6 +1,8 @@
 package com.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 /**
@@ -13,8 +15,10 @@ import lombok.Value;
  *    쿼리 읽기 힘듦, 유지보수 지옥
  * 4. IDE/컴파일 타임 체크 없음
  */
-@Value
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostInfoDto {
-    private final Long id;
-    private final String title;
+    private Long id;
+    private String title;
 }

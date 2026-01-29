@@ -52,8 +52,8 @@ public class MemberController {
         Member saveMember = memberRepository.save(member);
         log.info("Success to save member. memberId={}", saveMember.getId());
 
-        MemberDetail saveMemberDetail = memberDetailRepository.save(memberDetail);
-        log.info("Success to save memberDetail. memberDetail.member={}", saveMemberDetail.getMember().getId());
+//        MemberDetail saveMemberDetail = memberDetailRepository.save(memberDetail);
+//        log.info("Success to save memberDetail. memberDetail.member={}", saveMemberDetail.getMember().getId());
 
         return ResponseEntity.noContent().build();
     }

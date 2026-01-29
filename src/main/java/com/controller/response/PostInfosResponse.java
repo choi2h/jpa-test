@@ -21,19 +21,21 @@ public class PostInfosResponse {
         for (Post post : postPage.getContent()) {
             this.posts.add(new PostInfoResponse(post));
         }
-        this.count = postPage.getNumber();
+        this.count = postPage.getSize();
         this.pageNum = postPage.getNumber();
-        this.totalPage = postPage.getTotalPages();
+        this.totalPage = postPage.getTotalPages(); // 쿼리 한번 더 조회
         this.isFirst = pageNum == 0;
         this.isLast = pageNum == totalPage-1;
     }
-
+    // api -> total (int)
+    // 0 total if (Page<>)
+    // < 1 2 3 4 5 >
     public PostInfosResponse(Slice<Post> postSlice) {
         this.posts = new ArrayList<>();
         for (Post post : postSlice.getContent()) {
             this.posts.add(new PostInfoResponse(post));
         }
-        this.count = postSlice.getNumber();
+        this.count = postSlice.getSize();
         this.pageNum = postSlice.getNumber();
         this.totalPage = 0;
         this.isFirst = postSlice.isFirst();

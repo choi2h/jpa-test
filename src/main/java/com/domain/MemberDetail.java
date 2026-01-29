@@ -10,13 +10,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @Entity
 @Table(name = "member_detail")
+@ToString(of = {"age", "address"}, exclude = {"id", "member"})
 @NoArgsConstructor
 public class MemberDetail {
 

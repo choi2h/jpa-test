@@ -1,5 +1,6 @@
 package com.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,8 +36,7 @@ public class Post {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany
-    @JoinColumn(name = "comment_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     List<Comment> comments = new ArrayList<>();
 
     public Post (Member member, String title, String contents) {
@@ -47,6 +47,7 @@ public class Post {
     }
 
     public void addComment(Comment comment) {
+        comment.setPost(this);
         this.comments.add(comment);
     }
 
